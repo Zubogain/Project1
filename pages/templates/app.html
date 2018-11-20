@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Project1</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <style>
+            .msg {
+                padding:10px;
+                margin: 20px;
+                color: grey;
+            }
+            .msg-error {
+                background-color: #ef5350;
+                color: white;
+            }
+            .msg-alert {
+                background-color: #ff9800;
+                color: white;
+            }
+            .msg-info {
+                background-color: #29b6f6;
+                color: white;
+            }
+            .msg-success {
+                background-color: #26a69a;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header class='navbar-fixed'>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{% url 'home' %}" class="brand-logo">Project1</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main class="row">
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{% extends "app.html" %}
+
+{% block content %}
+<h3>Edit</h3>
+{% if errors %}
+    {% for error in errors %}
+        <div class='msg msg-error z-depth-1'>
+            {{ error }}
+        </div>
+    {% endfor %}
+{% elif successful %}
+    {% for success in successful %}
+        <div class='msg msg-success z-depth-1'>
+            {{ success }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form action='' method='post'>
+    {% csrf_token %}
+    <input type="text" value="{{ post }}" name="content" placeholder="Введите текст...">
+    <button class="waves-effect waves-light btn" type="submit">Сохранить</button>
+</form>
+{% endblock %}

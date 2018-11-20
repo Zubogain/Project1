@@ -1,0 +1,78 @@
+{% extends "app.html" %}
+
+{% block content %}
+<h3>Home page</h3>
+<div class="datagrid">
+    {% if errors %}
+        {% for error in errors %}
+            <div class='msg msg-error z-depth-1'>
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% elif successful %}
+        {% for success in successful %}
+            <div class='msg msg-success z-depth-1'>
+                {{ success }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form action='' method='post'>
+        {% csrf_token %}
+        <input type=text name="content" required placeholder="Введите текст...">
+        <button type="submit" class="waves-effect waves-light btn">Добавить</button>
+    </form>
+    <form action='' method='post'>
+        {% csrf_token %}
+        <div class='col s6'>
+            <p>Выберете в каком порядке</p>
+            <p>
+                <label>
+                    <input type='radio' name='what_order' value='' {% if what_order == '' %}checked{% endif %}>
+                    <span>Положительный</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type='radio' name='what_order' value='-' {% if what_order == '-' %}checked{% endif %}>
+                    <span>Отрицательный</span>
+                </label>
+            </p>
+        </div>
+        <div class='col s6'>
+            <p>Выберете тип поля для сортировки</p>
+            <p>
+                <label>
+                    <input type='radio' name='order_by' value='id' {% if order_by == 'id' %}checked{% endif %}>
+                    <span>id</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type='radio' name='order_by' value='content' {% if order_by == 'content' %}checked{% endif %}>
+                    <span>content</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type='radio' name='order_by' value='created' {% if order_by == 'created' %}checked{% endif %}>
+                    <span>created</span>
+                </label>
+            </p>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn">Сортировать</button>
+    </form>
+    <table>
+        <thead>
+            <tr><th>id</th><th>content</th><th>date</th><th>Редактирование</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts_list %}
+            <tr>
+                <td style="text-align: center;">{{ post.id }}</td><td>{{ post.content }}</td><td>{{ post.created }}</td><td><a href="{% url 'delete' post.id %}" class="waves-effect waves-light btn red">Удалить</a> <a href="{% url 'edit' post.id %}" class="waves-effect waves-light btn">Изменить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
